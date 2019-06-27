@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+
+  ldap-service:
+    image: osixia/openldap:latest
+
+  phpldapadmin-service:
+    image: osixia/phpldapadmin:latest
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=ldap-service
+    depends_on:
+      - ldap-service
+    ports:
+      - 443:443
